@@ -189,3 +189,4 @@ npm start                     # Opens http://localhost:3000
 
 ## 7. License & Academic Integrity
 Developed as part of **SOFT806 Continuous Integration and Continuous Deployment**, Auckland Institute of Studies (AIS). All sources are cited according to APA 7th Edition guidelines.
+

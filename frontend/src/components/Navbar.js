@@ -40,3 +40,4 @@ function Navbar({ user, onOpenAuth, onLogout, onOpenNewItem }) {
 }
 
 export default Navbar;
+

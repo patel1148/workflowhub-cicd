@@ -134,3 +134,4 @@ class WorkflowItemViewSet(viewsets.ModelViewSet):
             serializer.save(owner=self.request.user)
         else:
             serializer.save()
+

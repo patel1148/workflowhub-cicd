@@ -146,3 +146,4 @@ class WorkflowHubBackendTests(TestCase):
         results = response.data['results'] if 'results' in response.data else response.data
         for item in results:
             self.assertEqual(item['status'], 'Completed')
+
