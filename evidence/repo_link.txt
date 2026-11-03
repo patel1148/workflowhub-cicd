@@ -1,11 +1,7 @@
 # WorkFlowHub Ltd. — GitHub Repository Link
 # SOFT806 Continuous Integration and Continuous Deployment
-# Student Name: Prashant Bastola (or Jay)
-# Student ID: AIS-SOFT806-2026
+# Student Name: Jay Patel
+# Student ID: 271074230
 
 Repository URL:
-https://github.com/prashant-bastola/workflowhub-cicd
-
-Alternative / Secondary Organization Repository:
-https://github.com/workflowhub-ltd/workflowhub-platform
-
+https://github.com/patel1148/workflowhub-cicd

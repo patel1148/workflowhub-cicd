@@ -1,7 +1,7 @@
 ---
 title: "WorkFlowHub Ltd. — Continuous Integration and Deployment Strategy & Evaluation"
 subtitle: "SOFT806 Continuous Integration and Continuous Deployment — Trimester 3, 2026"
-author: "Student Name: Prashant Bastola (or Jay) | Student ID: AIS-SOFT806-2026"
+author: "Student Name: Jay Patel | Student ID: 271074230"
 date: "November 2026"
 ---
 
@@ -11,6 +11,8 @@ date: "November 2026"
 **Course Title:** Continuous Integration and Continuous Deployment  
 **Trimester:** Trimester 3, 2026  
 **Assessment:** Assignment 1 (Individual)  
+**Student Name:** Jay Patel  
+**Student ID:** 271074230  
 **Weighting:** 50% of Total Course Marks  
 **Due Date:** Friday 6th November 2026, 4:00 PM  
 

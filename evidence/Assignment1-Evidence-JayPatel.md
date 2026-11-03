@@ -1,7 +1,7 @@
 ---
 title: "WorkFlowHub Ltd. — Task 2 CI/CD Implementation & Submission Evidence"
 subtitle: "SOFT806 Continuous Integration and Continuous Deployment — Trimester 3, 2026"
-author: "Student Name: Prashant Bastola (or Jay) | Student ID: AIS-SOFT806-2026"
+author: "Student Name: Jay Patel | Student ID: 271074230"
 date: "November 2026"
 ---
 
@@ -9,9 +9,9 @@ date: "November 2026"
 ### Faculty of Information Technology Programme
 **Course:** SOFT806 Continuous Integration and Continuous Deployment  
 **Assessment:** Assignment 1 (Individual) — Task 2 Evidence Document  
-**Student Name:** Prashant Bastola (or Jay)  
-**Student ID:** AIS-SOFT806-2026  
-**GitHub Repository Link:** [https://github.com/prashant-bastola/workflowhub-cicd](https://github.com/prashant-bastola/workflowhub-cicd)  
+**Student Name:** Jay Patel  
+**Student ID:** 271074230  
+**GitHub Repository Link:** [https://github.com/patel1148/workflowhub-cicd](https://github.com/patel1148/workflowhub-cicd)  
 
 \newpage
 
@@ -49,7 +49,7 @@ date: "November 2026"
 
 The source code, container configurations, and CI/CD pipelines for **WorkFlowHub Ltd.** are maintained under professional Git version control.
 
-- **Primary Repository URL:** `https://github.com/prashant-bastola/workflowhub-cicd`
+- **Primary Repository URL:** `https://github.com/patel1148/workflowhub-cicd`
 - **Default Production Branch:** `main`
 - **Development Feature Branches:**
   - `feature/drf-backend-api`
