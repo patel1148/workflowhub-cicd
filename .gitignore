@@ -25,6 +25,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+*.zip
+
 
 # PyInstaller
 *.manifest
@@ -77,6 +79,10 @@ frontend/.env
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Office / Temporary files
+.~*
+~$*
 
 # IDEs
 .idea/
