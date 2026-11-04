@@ -1,3 +1,4 @@
+
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
@@ -18,9 +19,14 @@ afterEach(() => {
 
 test('renders WorkFlowHub header brand and productivity banner', () => {
   render(<App />);
-  const brandElement = screen.getByText(/WorkFlowHub/i);
+
+  // Target the brand specifically in the navigation header
+  const brandElement = screen.getByText('WorkFlowHub', {
+    selector: '.brand-title',
+  });
   expect(brandElement).toBeInTheDocument();
 
+  // Verify the productivity banner action
   const ctaElement = screen.getByText(/Create Workflow Task/i);
   expect(ctaElement).toBeInTheDocument();
 });
