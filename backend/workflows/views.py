@@ -1,12 +1,18 @@
+
 from rest_framework import viewsets, generics, status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .models import WorkflowItem
-from .serializers import WorkflowItemSerializer, UserSerializer, UserRegistrationSerializer
+from .serializers import (
+    WorkflowItemSerializer,
+    UserSerializer,
+    UserRegistrationSerializer
+)
 import os
+
 
 class HealthCheckView(APIView):
     """
@@ -25,7 +31,7 @@ class HealthCheckView(APIView):
 
 class RegisterView(generics.CreateAPIView):
     """
-    Endpoint to register a new user account and obtain an initial authentication token.
+    Register a new user and generate an authentication token.
     """
     queryset = User.objects.all()
     permission_classes = [permissions.AllowAny]
@@ -35,7 +41,9 @@ class RegisterView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+
         token, _ = Token.objects.get_or_create(user=user)
+
         return Response({
             "message": "User registered successfully",
             "user": UserSerializer(user).data,
@@ -45,7 +53,7 @@ class RegisterView(generics.CreateAPIView):
 
 class LoginView(APIView):
     """
-    Endpoint for user authentication. Returns token and user metadata.
+    Authenticate a user and return their authentication token.
     """
     permission_classes = [permissions.AllowAny]
 
@@ -60,78 +68,77 @@ class LoginView(APIView):
             )
 
         user = authenticate(username=username, password=password)
+
         if user is not None:
             token, _ = Token.objects.get_or_create(user=user)
+
             return Response({
                 "message": "Login successful",
                 "token": token.key,
                 "user": UserSerializer(user).data
             }, status=status.HTTP_200_OK)
-        else:
-            return Response(
-                {"error": "Invalid username or password."},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
+
+        return Response(
+            {"error": "Invalid username or password."},
+            status=status.HTTP_401_UNAUTHORIZED
+        )
 
 
 class LogoutView(APIView):
     """
-    Endpoint to invalidate the current user authentication token.
+    Invalidate the authenticated user's current token.
     """
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        if request.user.is_authenticated:
-            try:
-                request.user.auth_token.delete()
-            except Exception:
-                pass
-            logout(request)
-        return Response({"message": "Successfully logged out."}, status=status.HTTP_200_OK)
+        if request.auth:
+            request.auth.delete()
+
+        return Response(
+            {"message": "Successfully logged out."},
+            status=status.HTTP_200_OK
+        )
 
 
 class CurrentUserView(APIView):
     """
-    Endpoint to inspect the authenticated user profile.
+    Return the currently authenticated user's profile.
     """
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        if request.user.is_authenticated:
-            return Response({
-                "authenticated": True,
-                "user": UserSerializer(request.user).data
-            })
-        return Response({"authenticated": False, "user": None})
+        return Response({
+            "authenticated": True,
+            "user": UserSerializer(request.user).data
+        }, status=status.HTTP_200_OK)
 
 
 class WorkflowItemViewSet(viewsets.ModelViewSet):
     """
-    Full CRUD ViewSet for Workflow Items:
-    - GET /api/workflows/ (list, filterable by ?status=)
-    - POST /api/workflows/ (create)
-    - GET /api/workflows/{id}/ (retrieve)
-    - PUT/PATCH /api/workflows/{id}/ (update / edit status, title, description)
-    - DELETE /api/workflows/{id}/ (destroy)
+    Full CRUD ViewSet for Workflow Items.
+
+    Users can access and manage only their own workflow items.
     """
+
     serializer_class = WorkflowItemSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        queryset = WorkflowItem.objects.all()
-        status_param = self.request.query_params.get('status', None)
-        search_param = self.request.query_params.get('search', None)
+        # Restrict all workflow operations to the logged-in user.
+        queryset = WorkflowItem.objects.filter(owner=self.request.user)
+
+        status_param = self.request.query_params.get('status')
+        search_param = self.request.query_params.get('search')
 
         if status_param:
             queryset = queryset.filter(status=status_param)
+
         if search_param:
             queryset = queryset.filter(title__icontains=search_param)
 
         return queryset
 
     def perform_create(self, serializer):
-        if self.request.user.is_authenticated:
-            serializer.save(owner=self.request.user)
-        else:
-            serializer.save()
-
+        # Assign ownership using the authenticated user.
+        # Never trust an owner ID supplied by the frontend.
+        serializer.save(owner=self.request.user)
