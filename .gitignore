@@ -25,6 +25,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+*.zip
+
 
 # PyInstaller
 *.manifest
@@ -78,8 +80,13 @@ frontend/.env
 .AppleDouble
 .LSOverride
 
+# Office / Temporary files
+.~*
+~$*
+
 # IDEs
 .idea/
 .vscode/
 *.sublime-workspace
 *.sublime-project
+

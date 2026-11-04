@@ -132,3 +132,4 @@ function AuthModal({ initialMode = 'login', onClose, onSuccess }) {
 }
 
 export default AuthModal;
+

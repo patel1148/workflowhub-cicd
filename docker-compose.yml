@@ -44,3 +44,4 @@ volumes:
 networks:
   workflowhub-net:
     driver: bridge
+

@@ -1,7 +1,7 @@
 # WorkFlowHub Ltd. — Full-Stack Workflow & Productivity Platform
 
-[![CI/CD Pipeline](https://github.com/workflowhub/workflowhub/actions/workflows/ci.yml/badge.svg)](https://github.com/workflowhub/workflowhub/actions)
-[![CircleCI](https://circleci.com/gh/workflowhub/workflowhub.svg?style=shield)](https://circleci.com/gh/workflowhub/workflowhub)
+[![CI/CD Pipeline](https://github.com/patel1148/workflowhub-cicd/actions/workflows/ci.yml/badge.svg)](https://github.com/patel1148/workflowhub-cicd/actions)
+[![CircleCI](https://circleci.com/gh/patel1148/workflowhub-cicd.svg?style=shield)](https://circleci.com/gh/patel1148/workflowhub-cicd)
 
 > **Course**: SOFT806 Continuous Integration and Continuous Deployment  
 > **Institution**: Auckland Institute of Studies (AIS), New Zealand  
@@ -189,3 +189,4 @@ npm start                     # Opens http://localhost:3000
 
 ## 7. License & Academic Integrity
 Developed as part of **SOFT806 Continuous Integration and Continuous Deployment**, Auckland Institute of Studies (AIS). All sources are cited according to APA 7th Edition guidelines.
+

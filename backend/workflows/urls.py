@@ -25,3 +25,4 @@ urlpatterns = [
     # CRUD Workflows / Tasks Endpoints
     path('', include(router.urls)),
 ]
+

@@ -1,9 +1,7 @@
-
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 
-// Mock fetch globally
 beforeEach(() => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
@@ -24,13 +22,11 @@ test('renders WorkFlowHub header brand and productivity banner', async () => {
   const brandElement = screen.getByText('WorkFlowHub', {
     selector: '.brand-title',
   });
-
   expect(brandElement).toBeInTheDocument();
 
   const ctaElement = screen.getByText(/Create Workflow Task/i);
   expect(ctaElement).toBeInTheDocument();
 
-  // Wait for asynchronous initialization to finish
   await waitFor(() => {
     expect(
       screen.queryByText(/Synchronizing workflows/i)
