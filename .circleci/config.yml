@@ -60,7 +60,7 @@ jobs:
           name: Install Node Dependencies
           command: |
             cd frontend
-            npm install
+            npm ci
       - save_cache:
           paths:
             - ./frontend/node_modules
