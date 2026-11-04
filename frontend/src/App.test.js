@@ -1,8 +1,7 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import '@testing-library/jest-dom';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 
-// Mock fetch globally for testing
 beforeEach(() => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
@@ -17,9 +16,20 @@ afterEach(() => {
   jest.restoreAllMocks();
 });
 
-test('renders WorkFlowHub without crashing', () => {
-  const div = document.createElement('div');
-  const root = createRoot(div);
-  root.render(<App />);
-  root.unmount();
+test('renders WorkFlowHub header brand and productivity banner', async () => {
+  render(<App />);
+
+  const brandElement = screen.getByText('WorkFlowHub', {
+    selector: '.brand-title',
+  });
+  expect(brandElement).toBeInTheDocument();
+
+  const ctaElement = screen.getByText(/Create Workflow Task/i);
+  expect(ctaElement).toBeInTheDocument();
+
+  await waitFor(() => {
+    expect(
+      screen.queryByText(/Synchronizing workflows/i)
+    ).not.toBeInTheDocument();
+  });
 });
